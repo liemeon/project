@@ -4,13 +4,23 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-int main(int argc, char *argv[])
+int main(int argc, char *argv[]) // need argument!! Makefile fix need
 {
   if(argc != 3)
   {
     printf("translate original_file_name newfile_name\n");
     exit(0);
   }
+  if() //origin txt file exist check
+  {
+    printf("origin file is not exist\n");
+    exit(0);
+  }
+  /*  translate version  1
+    system("");
+  */
+
+  /* translate version 2 */
   fd1 = open(argv[1],O_RDONLY);
   fd2 = open(argv[2],O_WRONLY|O_CREAT,0666);
 
