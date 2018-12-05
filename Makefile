@@ -1,12 +1,15 @@
 CFLAGS = -Wall
-OBJS = func1.o func2.o myapp.o
+OBJS = translate.o extract_text.o myapp.o
 TARGET = myapp
 
 $(TARGET) : $(OBJS)
-	$(CC) -o $(TARGET) $(OBJS)
+	$(CC) -o $(TARGET) ../lib/$(OBJS)
 
 %.o : %.c
-	$(CC) -c $(CFLAGS) $< -o $@
+	$(CC) -c $(CFLAGS) ../lib/$< -o ../lib/$@
 
-clean : 
-	rm -f $(TARGET) $(OBJS)
+clean_o :
+	rm -f ../lib/$(OBJS)
+
+clean :
+	rm -f ../lib/$(OBJS) $(TARGET)
