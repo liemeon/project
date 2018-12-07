@@ -36,5 +36,5 @@ int set_ticker(int n_msec)
    timeset.it_value.tv_sec = n_sec;
    timeset.it_value.tv_usec = n_usec;
 
-  return //what parameters should be?
+  return //type man 2 setitimer on kernel
 }
