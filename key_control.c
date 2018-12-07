@@ -42,7 +42,9 @@ void key_ctl()
       }while(ch != ' ');
       set_ticker(500);
       break;
-    
+
+    case ' ': // maybe have to add something for pause. 
+
     default:break;
   }
 }
