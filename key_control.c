@@ -34,7 +34,7 @@ void key_ctl()
       dir_y = 0;
       dir_x = 1;
       break;
-    
+
     case ' ':
       set_ticker(0);
       do {
@@ -43,7 +43,9 @@ void key_ctl()
       set_ticker(500);
       break;
 
-    case ' ': // maybe have to add something for pause. 
+    case 'q':
+      Game_Over();
+      break;
 
     default:break;
   }
