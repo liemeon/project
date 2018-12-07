@@ -34,6 +34,15 @@ void key_ctl()
       dir_y = 0;
       dir_x = 1;
       break;
+    
+    case ' ':
+      set_ticker(0);
+      do {
+         ch = getch();
+      }while(ch != ' ');
+      set_ticker(500);
+      break;
+    
     default:break;
   }
 }
