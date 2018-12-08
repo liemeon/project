@@ -43,6 +43,7 @@ void key_ctl()
       set_ticker(500);
       break;
 
+    case 'Q': // it will be more specific
     case 'q':
       Game_Over();
       break;
