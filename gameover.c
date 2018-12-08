@@ -1,8 +1,0 @@
-
-int game_over()
-{
-  sleep(1);
-  endwin();
-  exit(0);
-}
-
