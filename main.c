@@ -38,3 +38,20 @@ int set_ticker(int n_msec)
 
    return setitimer(ITIMER_REAL, &timeset, NULL);
 }
+
+int main()
+{
+   char ch;
+
+   Init();
+
+   signal(SIGALRM, sig_alrm);
+
+   set_ticker(500);
+
+   while(1) {
+     key_ctl();
+   }
+   endwin();
+   return 0;
+}
