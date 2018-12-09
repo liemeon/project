@@ -1,3 +1,8 @@
+#include <unistd.h>
+#include <stdlib.h>
+#include <sys/time.h>
+
+
 int Game_Over()
 {
    sleep(1);

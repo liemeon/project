@@ -5,6 +5,8 @@
 #include <stdlib.h>
 #include <sys/time.h>
 
+// we need lib
+
 typedef struct snake {
 
    int x, y;

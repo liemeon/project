@@ -1,3 +1,10 @@
+#include <unistd.h>
+#include <signal.h>
+#include <stdio.h>
+#include <curses.h>
+#include <stdlib.h>
+#include <sys/time.h>
+
 void Snake_Move()
 {
    Snake p, tmp;
