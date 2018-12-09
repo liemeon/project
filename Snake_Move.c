@@ -10,25 +10,25 @@ void Snake_Move()
    p->x += dir_x;
    p->y += dir_y;
 
-  if(head->x > //size of x)
+  if(head->x > 79) //size of x
      head->x = 0;
 
   if(head->x < 0)
-     head->x =// size of x;
+     head->x = 79; //size of x
 
-  if(head->y > //size of y)
+  if(head->y > 23) //size of y
      head->y = 0;
 
   if(head->y < 0)
-     head->y = //size of y;
+     head->y = 23; //size of y
   // maybe don't have to add {} cause for readability.
 
   move(head->y, head->x);
 
-  if((char)inch() == '*')
+  if((char)inch() == '*') //eat it's self
     Game_Over();
 
-  if((char)inch() == 'o')
+  if((char)inch() == 'o') //eat foods
   {
     move(head->y, head->x);
     addch('*');
@@ -41,8 +41,8 @@ void Snake_Move()
     head = tmp;
     do
     {
-      food.x = rand() % //size of x;
-      food.y = rand() % //size of y;
+      food.x = rand() % 80 //size of x
+      food.y = rand() % 24 //size of y
       move(food.y, food.x);
     }
     while(((char)inch()) == '*');
@@ -57,6 +57,4 @@ void Snake_Move()
   move(tail->y, tail->x);
   addch(' ');
   refresh();
-
 }
-
