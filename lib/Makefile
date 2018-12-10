@@ -4,11 +4,8 @@ myapp: libfuncs.a
 libfuncs.a: Game_Over.o Init.o
 	ar rv libfuncs.a Game_Over.o Init.o
 
-Game_Over.o: Game_Over.c
-	gcc -c Game_Over.c -lncurses
-
-Init.o: Init.c
-	gcc -c Init.c -lncurses
+%.o: %.c
+	gcc -c -lncurses $^
 
 clean:
-	rm -f Init.o Game_Over.o libfuncs.a myapp
+	rm -f *.o libfuncs.a myapp
