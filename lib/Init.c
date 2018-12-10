@@ -6,6 +6,24 @@
 #include <sys/time.h>
 #include "Init.h"
 
+typedef struct snake {
+
+   int x, y;
+   struct snake *next, *prev;
+
+}SNAKE, *Snake;
+
+
+typedef struct food {
+   int x, y;
+}FOOD, *Food;
+
+int a;
+int dir_x, dir_y;
+Snake head, tail;
+FOOD food;
+
+
 void Init()
 {
    initscr();
