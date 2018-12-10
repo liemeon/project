@@ -4,6 +4,7 @@
 #include <curses.h>
 #include <stdlib.h>
 #include <sys/time.h>
+#include "key_ctl.h"
 
 void key_ctl()
 {

@@ -4,6 +4,7 @@
 #include <curses.h>
 #include <stdlib.h>
 #include <sys/time.h>
+#include "Snake_Move.h"
 
 void Snake_Move()
 {
