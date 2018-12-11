@@ -6,6 +6,7 @@
 #include <sys/time.h>
 #include "Game_Over.h"
 #include "Init.h"
+#include "Init2.h"
 
 typedef struct snake {   //double Linked List
 
@@ -56,25 +57,28 @@ void Snake_Move()
   if(head->x >= 80) //size of x
      Game_Over();
 
-  if(head->x <= 0)
+  if(head->x < 0)
      Game_Over();
 
-  if(head->y >= 80) //size of y
+  if(head->y > 24) //size of y
      Game_Over();
 
-  if(head->y <= 0)
+  if(head->y < 0)
      Game_Over();
   // maybe don't have to add {} cause for readability.
 
   move(head->y, head->x); //The current head contains the current position plus the directional value
 
-  if((char)inch() == '*') //eat it's self
+  if((char)inch() == '@') //eat it's self
+    Game_Over();
+
+  if((char)inch() == '#')
     Game_Over();
 
   if((char)inch() == 'o') //eat foods
   {
     move(head->y, head->x);
-    addch('*');
+    addch('@');
     refresh();
     tmp = (Snake)malloc(sizeof(SNAKE));
     tmp->x = head->x + dir_x;
@@ -88,13 +92,13 @@ void Snake_Move()
       food.y = rand() % 24; //size of y
       move(food.y, food.x);
     }
-    while(((char)inch()) == '*'); //Check for conflicts between regenerated food and snakes
+    while(((char)inch()) == '@' || ((char)inch() == '#')); //Check for conflicts between regenerated food and snakes
     move(food.y, food.x);
     addch('o');
     refresh();
   }
   move(head->y, head->x); //Snake position change
-  addch('*');
+  addch('@');
   refresh();
   move(tail->y, tail->x);
   addch(' ');
@@ -180,7 +184,7 @@ int main()
    char ch;
    signal(SIGALRM, sig_alrm);
    refresh();
-   Init();
+   Init2();
 
    set_ticker(0);
       do {
