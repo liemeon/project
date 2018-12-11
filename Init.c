@@ -18,6 +18,7 @@ typedef struct food {
    int x, y;
 }FOOD, *Food;
 
+
 int a;
 int dir_x, dir_y;
 Snake head, tail;

@@ -53,16 +53,16 @@ void Snake_Move()
    p->x += dir_x;
    p->y += dir_y;
 
-  if(head->x > 79) //size of x
+  if(head->x >= 80) //size of x
      Game_Over();
 
-  if(head->x < 0)
+  if(head->x <= 0)
      Game_Over();
 
-  if(head->y > 23) //size of y
+  if(head->y >= 80) //size of y
      Game_Over();
 
-  if(head->y < 0)
+  if(head->y <= 0)
      Game_Over();
   // maybe don't have to add {} cause for readability.
 
