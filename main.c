@@ -4,10 +4,10 @@
 #include <curses.h>
 #include <stdlib.h>
 #include <sys/time.h>
+#include "Game_Over.h"
+#include "Init.h"
 
-// we need lib
-
-typedef struct snake {
+typedef struct snake {   //double Linked List
 
    int x, y;
    struct snake *next, *prev;
@@ -18,9 +18,9 @@ typedef struct snake {
 typedef struct food {
    int x, y;
 }FOOD, *Food;
-
+int speed = 100;
 int a;
-int dir_x, dir_y;
+int dir_x, dir_y; //variables for setting the x-axis,y-axis direction
 Snake head, tail;
 FOOD food;
 
@@ -54,19 +54,19 @@ void Snake_Move()
    p->y += dir_y;
 
   if(head->x > 79) //size of x
-     head->x = 0;
+     Game_Over();
 
   if(head->x < 0)
-     head->x = 79; //size of x
+     Game_Over();
 
   if(head->y > 23) //size of y
-     head->y = 0;
+     Game_Over();
 
   if(head->y < 0)
-     head->y = 23; //size of y
+     Game_Over();
   // maybe don't have to add {} cause for readability.
 
-  move(head->y, head->x);
+  move(head->y, head->x); //The current head contains the current position plus the directional value
 
   if((char)inch() == '*') //eat it's self
     Game_Over();
@@ -81,19 +81,19 @@ void Snake_Move()
     tmp->y = head->y + dir_y;
     tmp->next = head;
     head->prev = tmp;
-    head = tmp;
-    do
+    head = tmp; //The snake's size is increased by adding it to the head using tmp, since it has been eaten.
+    do //food regeneration
     {
       food.x = rand() % 80; //size of x
       food.y = rand() % 24; //size of y
       move(food.y, food.x);
     }
-    while(((char)inch()) == '*');
+    while(((char)inch()) == '*'); //Check for conflicts between regenerated food and snakes
     move(food.y, food.x);
     addch('o');
     refresh();
   }
-  move(head->y, head->x);
+  move(head->y, head->x); //Snake position change
   addch('*');
   refresh();
   move(tail->y, tail->x);
@@ -138,12 +138,25 @@ void key_ctl()
       dir_y = 0;
       break;
 
+    case 't':
+      speed = speed + 200;
+      if(speed > 2100) speed = 2100;
+      set_ticker(speed);
+      break;
+
+    case 'g':
+      speed = speed - 200;
+      if(speed < 100) speed = 100;
+      set_ticker(speed);
+      break;
+
+
     case ' ': // if user press space key
       set_ticker(0); // pause
       do {
          ch = getch();
       }while(ch != ' '); // if user press next space key
-      set_ticker(500); // restart
+      set_ticker(speed); // restart
       break;
 
     case 'Q': // it will be more specific
@@ -157,7 +170,7 @@ void key_ctl()
 
 void sig_alrm(int singo)
 {
-   set_ticker(500);
+   set_ticker(speed);
    Snake_Move();
 }
 
@@ -165,12 +178,17 @@ void sig_alrm(int singo)
 int main()
 {
    char ch;
-
+   signal(SIGALRM, sig_alrm);
+   refresh();
    Init();
 
-   signal(SIGALRM, sig_alrm);
+   set_ticker(0);
+      do {
+         ch = getch();
+      }while(ch != ' ');
+      set_ticker(speed);
 
-   set_ticker(500);
+   set_ticker(speed);
 
    while(1) {
      key_ctl();

@@ -26,9 +26,9 @@ FOOD food;
 
 void Init()
 {
-   initscr();
-   cbreak();
-   noecho();
+   initscr(); //Start curses mode
+   cbreak(); //When CBREAK is on, input from reading is immediately available in the program.
+   noecho(); //Suppress echo
    curs_set(0);
    srand(time(0));
 
@@ -58,6 +58,17 @@ void Init()
    addch('*');
    move(food.y, food.x);
    addch('o');
-   refresh();
+/*   move(10, 40);
+   addch('s');
+   move(10, 41);
+   addch('t');
+   move(10, 42);
+   addch('a');
+   move(10, 43);
+   addch('r');
+   move(10, 44);
+   addch('t');*/
+
+   refresh(); //print it on real screen
 }
 
